@@ -35,10 +35,3 @@ class JobLeaveOptions(SuperEnum):
     COMPLETE = 'complete'
     NA = 'NA'
     BASED_ON_EXPERIENCE = 'with_rules'
-
-
-class RulesOptions(SuperEnum):
-    COMPLETE = 1
-    NA = 0
-    THIRD = 1/3
-    TWOTHIRD = 2/3
