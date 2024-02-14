@@ -25,4 +25,5 @@ def main():
     final_amount = example_employee.calculate_indemnity(reason=reason)
     print(f'The calculated indemnity is : {final_amount}')
 
-main()
+if __name__ == "__main__":
+    main()
