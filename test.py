@@ -6,7 +6,7 @@ from models.reasons import JobLeaveReasons
 class TestIndemnity(unittest.TestCase):
     def setUp(self):
         self.test_cases = [
-            #JOING DAT      # LEAVING REASON                #SALARY
+            #JOING DATE      # LEAVING REASON                #Expected Indemnity
             #(DD-MM-YYYY)     Choices                        FLOAT
             ("01-2-2023", JobLeaveReasons.RESIGNATION.value, 0),
             ("01-2-2022", JobLeaveReasons.RESIGNATION.value, 1666.67),
