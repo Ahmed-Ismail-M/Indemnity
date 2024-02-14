@@ -1,23 +1,5 @@
-from models.models import JobLeaveReasons, JobLeaveOptions, EMPLOYEE
-from ds.local import JobLeaveRules
-
-def get_rule(reason: str) -> JobLeaveOptions:
-    return JobLeaveRules[reason]
-
-
-def calculate_indemnity( reason: str)-> float:
-    
-    example_employee = EMPLOYEE(base_salary=5000, start_date="2020-2-21")
-    rules = {
-         JobLeaveOptions.COMLETE : example_employee.base_salary,
-         JobLeaveOptions.NA: 0,
-         JobLeaveOptions.WITH_RULES: example_employee.calculate_indemnity()
-    }
-    try:
-        rule = get_rule(reason)
-        return rules[rule]
-    except Exception :
-        raise Exception(f'Cannot find rule for : {reason}')
+from models.reasons import JobLeaveReasons
+from models.employee import EMPLOYEE
 
 def get_leave_reason_from_user()-> str:
     available_reasons = JobLeaveReasons.get_tuple_values()
@@ -38,8 +20,9 @@ def get_leave_reason_from_user()-> str:
     return selected_reason
 
 def main():
+    example_employee = EMPLOYEE(base_salary=5000, joining_date="21-2-2022")
     reason = get_leave_reason_from_user()
-    final_amount = calculate_indemnity(reason=reason)
+    final_amount = example_employee.calculate_indemnity(reason=reason)
     print(f'The calculated indemnity is : {final_amount}')
 
 main()
