@@ -1,32 +1,4 @@
 from enum import Enum
-from dataclasses import dataclass
-from datetime import date, datetime
-
-
-@dataclass
-class EMPLOYEE():
-    base_salary: float
-    start_date: str
-
-    def calculate_years_of_experience(self) -> float:
-        start_date_as_date = datetime.strptime(self.start_date, "%Y-%m-%d").date()
-        # datetime.strptime(start_date_str, "%Y-%m-%d").date()
-        current_date = date.today()
-        years_of_experience = (current_date - start_date_as_date).days / 365.25
-        return round(years_of_experience, 2)
-
-    def calculate_indemnity(self):
-        years_of_experience = self.calculate_years_of_experience()
-        if years_of_experience < 2:
-            return 0
-        elif 2 <= years_of_experience < 5:
-            return 1/3 * self.base_salary
-        elif 5 <= years_of_experience < 10:
-            return 2/3 * self.base_salary
-        else:
-            return self.base_salary
-
-
 class SuperEnum(Enum):
 
     @classmethod
@@ -60,6 +32,13 @@ class JobLeaveReasons(SuperEnum):
 
 
 class JobLeaveOptions(SuperEnum):
-    COMLETE = 'complete'
+    COMPLETE = 'complete'
     NA = 'NA'
-    WITH_RULES = 'with_rules'
+    BASED_ON_EXPERIENCE = 'with_rules'
+
+
+class RulesOptions(SuperEnum):
+    COMPLETE = 1
+    NA = 0
+    THIRD = 1/3
+    TWOTHIRD = 2/3
