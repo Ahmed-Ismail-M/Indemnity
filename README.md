@@ -28,3 +28,10 @@ Run the application using the following command:
 python main.py
 ```
 The application will prompt you to select the reason for leaving the job. After selecting the reason, it will create a sample employee with a base salary of 5000 and a start date. Finally, it will print the calculated indemnity amount.
+
+## Test Cases
+You can run test cases using the provided test.py script. To add test cases, modify the setup function in test.py.
+
+```bash
+python test.py
+```
