@@ -17,18 +17,18 @@ class EMPLOYEE():
         return round(total_of_experience, 1)
 
     def check_rule(self, total_experience: float) -> float:
-        years_of_experience = int(total_experience)
-        months = total_experience - int(total_experience)
-        five_years_experience = 5
+        years_of_experience = int(total_experience) # get number of years from the total experience
+        months = total_experience - int(total_experience) # get number of months from the total experience
+        five_years_experience = 5 # to apply first 5 years rules
         if years_of_experience < 2:
             return 0
         elif 2 <= years_of_experience < 5:
-            if months > 0.59:# If the employee stayed more than 5 months
+            if months > 0.59:# If the employee stayed more than 5 months will add another year
                 years_of_experience += 1
             return round(1/3 * self.get_half_indemnity(years_of_experience), 2)
         elif 5 <= years_of_experience < 10:
             years_above_five_exp = round(years_of_experience - 5, 1)
-            if months > 0.59: # If the employee stayed more than 5 months
+            if months > 0.59: # If the employee stayed more than 5 months will add another year
                 five_years_experience = 6
 
             return round(2/3 * (self.get_half_indemnity(five_years_experience) + (years_above_five_exp * self.base_salary)), 2)
