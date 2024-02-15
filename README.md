@@ -17,7 +17,7 @@ Make sure you have Python installed on your system. You can download Python from
 2. Change into the project directory:
 
     ```bash
-    cd employee-indemnity-calculator
+    cd Indemnity
     ```
 
 ## Usage
