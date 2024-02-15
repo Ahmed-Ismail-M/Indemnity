@@ -17,7 +17,7 @@ class TestIndemnity(unittest.TestCase):
 
     def test_calculate_indemnity(self):
         for joining_date, reason, expected_indemnity in self.test_cases:
-            self.example_employee = EMPLOYEE(base_salary=5000, joining_date=joining_date)
+            self.example_employee = EMPLOYEE(base_salary=5000, joining_date=joining_date, leave_date="15-2-2024")
             actual_indemnity = self.example_employee.calculate_indemnity(reason=reason)
             self.assertEqual(actual_indemnity, expected_indemnity)
 

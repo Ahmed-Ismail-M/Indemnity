@@ -1,5 +1,5 @@
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime
 from ds.local import KSAJobLeaveRules
 from models.reasons import JobLeaveOptions
@@ -9,17 +9,18 @@ from models.reasons import JobLeaveOptions
 class EMPLOYEE():
     base_salary: float
     joining_date: str
+    leave_date: str = field(default=datetime.now().strftime("%d-%m-%Y")) # make today as the default value if not provided
 
     def calculate_total_experience(self) -> float:
-        start_date_as_date = datetime.strptime(self.joining_date, "%d-%m-%Y").date()
-        current_date = date.today()
-        total_of_experience = (current_date - start_date_as_date).days / 365.25
+        start_date_as_date = datetime.strptime(self.joining_date, "%d-%m-%Y").date()  # change date from string to date object
+        leave_date_as_date = datetime.strptime(self.leave_date, "%d-%m-%Y").date()
+        total_of_experience = (leave_date_as_date - start_date_as_date).days / 365.25
         return round(total_of_experience, 1)
 
     def check_rule(self, total_experience: float) -> float:
         years_of_experience = int(total_experience) # get number of years from the total experience
         months = total_experience - int(total_experience) # get number of months from the total experience
-        five_years_experience = 5 # to apply first 5 years rules
+        five_years_experience = 5 # to apply first 5 years rule
         if years_of_experience < 2:
             return 0
         elif 2 <= years_of_experience < 5:
